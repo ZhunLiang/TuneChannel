@@ -23,8 +23,8 @@ our @GroXYZ=split/\s+/,`tail -1 $GroFile`;
 our $BinNum=@GroXYZ[3]/$DetaBin;
 our $TotalLong = @GroXYZ[3];
 
-#GetInputFile($ARGV[0],"end.gro");
-#GetInputFile($ARGV[1],"end.top");
+GetInputFile($ARGV[0],"end.gro");
+GetInputFile($ARGV[1],"end.top");
 system "PYTHON GetMSDpara.py";
 our @MoleName = GetMSD("NAME");
 our @MoleMass = GetMSD("MASS");
