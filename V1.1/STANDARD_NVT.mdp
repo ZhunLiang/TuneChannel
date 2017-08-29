@@ -1,0 +1,69 @@
+title               =  Define here
+cpp                 =  /lib/cpp
+constraints         =  all-bonds
+integrator          =  md
+dt                  =  DDDTTT       ; ps !
+nsteps              =  NSTEPS;
+nstcomm             =  1
+nstxout             =  5000
+nstvout             =  0
+nstfout             =  0
+nstlog              =  5000
+nstenergy           =  2000
+nstlist             =  5
+ns_type             =  grid
+
+
+;xtc-grps            = system 
+;nstxtcout           =  1000
+
+; electrostatic and short range interactions
+coulombtype         =  PME
+cutoff-scheme	    = Verlet
+vdwtype		    = cut-off
+rvdw                =  1.2
+rlist               =  1.2
+rcoulomb            =  1.2
+fourierspacing      =  0.1
+pme_order           =  4
+ewald_rtol          =  1e-5
+ewald_geometry      =  3dc ; when use vacuum, add this to fix the boxsize
+;pbc		    =  xy ; use in >5.0 version
+
+; Berendsen temperature coupling is on in two groups
+Tcoupl              =  Berendsen;nose-hoover; Berendsen
+tc-grps             =   LIQUID SOLID
+tau_t               =   0.2 0.2
+ref_t               =   350 0
+nhchainlength	    =   1
+DispCorr	    =   EnerPres
+
+; Pressure coupling is not on
+Pcoupl                   = no;parrinello-rahman;no;Berendsen
+Pcoupltype               = isotropic
+tau_p                    = 1.0
+compressibility          = 4.5e-5
+ref_p                    = 1.0
+
+; Generate velocites is on at 300 K.
+gen_vel             =  no;yes;no    ; yes when start from scratch
+gen_temp            =  298
+gen_seed            =  173529
+
+
+;energygrps               = WaL WaU GrO
+
+freezegrps               = SOLID
+freezedim                = Y Y Y ;Y Y Y 	Y Y Y 	
+
+;energygrp_excl           = WaL WaL WaU WaU GrO GrO
+
+
+;userint1	= 14507
+;userint2	= 14702
+;userint3	= 0
+;userint4   	= 500
+;annealing = single
+;annealing_npoints=3
+;annealing_time=0 1000 1000
+;annealing_temp=800 800 350
