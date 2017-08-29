@@ -65,6 +65,7 @@ while($RUNTIME>1 && $RUNTIME<$MAXRUN){
     $RUNTIME=$RUNTIME+1;
 }
 
+GeneraNdx("end.gro");
 RunGmx("initial",0);
 
 if($COMBINE==1){
