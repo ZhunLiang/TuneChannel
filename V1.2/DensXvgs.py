@@ -49,6 +49,7 @@ channel_end = int(dens_end - deta_bin*(total_long-channel_long)/2)
 bulk_begin = int(channel_begin + deta_bin*3)
 bulk_end = int(channel_end - deta_bin*3)
 channel_bulk = np.array([float(dens_line[i].split()[-1]) for i in range(bulk_begin,bulk_end)])
+Mean_channel_bulk=np.mean(channel_bulk)
 dens_file.close()
 #####the next is get the delete number of each type molecular
 Mole_Num = np.array([int(mole_num.split()[i]) for i in range(len(mole_num.split()))])
