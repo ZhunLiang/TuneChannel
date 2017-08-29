@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -q NICEshort
+#PBS -N Run_Tune
+#PBS -j oe
+#PBS -l nodes=1:ppn=32
+
+cd $PBS_O_WORKDIR
+source ~/.bashrc
+perl bash_multi.sh
