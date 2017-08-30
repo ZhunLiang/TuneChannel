@@ -5,10 +5,10 @@
 @Dir1=("/home/lz/lz/Simulation/MXene_MD");
 @Dir2_a=("EmimTf2N"); #Ion
 #@Dir2_b=("Ti3C2","Ti3C2IF2","Ti3C2IOH2"); #Electrode
-@Dir2_b=("Ti3C2IF2");
+@Dir2_b=("Ti3C2IF2","Ti3C2IOH2");
 #@Dir3=("NoRotate","Rotate_X","Rotate_XY");
-#@Dir3=("Rotate_X","Rotate_XY");
-@Dir3=("Rotate_X");
+@Dir3=("Rotate_X","Rotate_XY");
+#@Dir3=("Rotate_XY");
 $DetaBin=0.01;
 $BulkDens=1545;
 $Delete="-1_1_1";
