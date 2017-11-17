@@ -5,12 +5,12 @@
 @Dir1=("/home/lz/lz/Simulation/MXene_MD");
 @Dir2_a=("EmimTf2N"); #Ion
 #@Dir2_b=("Ti3C2","Ti3C2IF2","Ti3C2IOH2"); #Electrode
-@Dir2_b=("Ti3C2IF2","Ti3C2IOH2");
+@Dir2_b=("Ti3C2");
 #@Dir3=("NoRotate","Rotate_X","Rotate_XY");
 @Dir3=("Rotate_X","Rotate_XY");
-#@Dir3=("Rotate_XY");
+#@Dir3=("Rotate_X");
 $DetaBin=0.01;
-$BulkDens=1545;
+$BulkDens=1546;
 $Delete="-1_1_1";
 $Dir_code=`pwd`;
 chomp($Dir_code);
@@ -29,8 +29,8 @@ for($a=0;$a<$NDir1;$a+=1){
         for($d=0;$d<$NDir3;$d+=1){
         $Prex4="$Prex3/@Dir3[$d]/";                                                                             
         @Prex[$Ind]=$Prex4;                                                                                     
-        @Gro[$Ind]="Channel.gro";
-        @Top[$Ind]="Channel.top"; 
+        @Gro[$Ind]="end.gro";
+        @Top[$Ind]="end.top"; 
         $Ind = $Ind + 1;                                                                                        
       }
     }

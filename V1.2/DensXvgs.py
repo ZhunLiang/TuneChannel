@@ -43,9 +43,11 @@ dens_end = len(dens_line)
 dens_begin = dens_end-bin_number
 deta_bin = bin_number/total_long
 bulk_begin1 = int(dens_begin)
+#-----bulk range, total 3 nm 
 bulk_end1 = int(dens_begin + deta_bin*1.5)
 bulk_end2 = int(dens_end)
 bulk_begin2 = int(dens_end - deta_bin*1.5)
+#-----bulk range, total 3 nm
 channel_bulk1 = np.array([float(dens_line[i].split()[-1]) for i in range(bulk_begin1,bulk_end1)])
 channel_bulk2 = np.array([float(dens_line[i].split()[-1]) for i in range(bulk_begin2,bulk_end2)])
 Mean_channel_bulk1 = np.mean(channel_bulk1)
@@ -62,10 +64,14 @@ Kmean = (Kmax+Kmin)/2
 v1 = Mean_channel_bulk/bulk_dens
 Mole_Type_Num = len(Mole_Num)
 Delete_Num = np.zeros(Mole_Type_Num)
+#only if too dense then calculated the needed delete number
 if(v1>Kmax):
     v2=np.sum(Mole_Num*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     v3=np.sum(Delete_Ratio*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     Delete_Num = np.floor((1-Kmean/v1)*v2/v3*Delete_Ratio)
+#in too small density, then return -1
+if(v1<=Kmin):
+    Delete_Num -= 1
 
 Delete_str = [str(int(Delete_Num[i])) for i in range(Mole_Type_Num)]
 OutPut = "\t".join(Delete_str)

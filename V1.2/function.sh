@@ -43,11 +43,15 @@ sub RunGmx{
     system "cp $_[0].mdp $_[0]/start.mdp";
     system "mv index.ndx $_[0]/";
     chdir "$_[0]/";
+    my $ntomp=32/$_[2];
     system "GROMACSgmx grompp -f start.mdp -c start.gro -p start.top -n index.ndx -maxwarn 1 -o end.tpr";
-    system "GROMACSgmx mdrun -s end.tpr -v -deffnm end -ntmpi 16";
+    #------------ATTENTION--------------#
+    # -ntmpi will affect the speed and if wrong #
+    system "GROMACSgmx mdrun -s end.tpr -v -deffnm end -ntmpi $_[2] -ntomp $ntomp";
+    #system "GROMACSgmx mdrun -s end.tpr -v -deffnm end -ntmpi $_[2]";
     if($_[1] == 1){
-	system "echo 0 | GROMACSgmx density -f end.trr -s end.tpr -sl $BinNum -o dens.xvg";
-	system "mv dens.xvg ../";
+        system "echo 0 | GROMACSgmx density -f end.trr -s end.tpr -sl $BinNum -o dens.xvg";
+        system "mv dens.xvg ../";
     }
     system "echo 0 | GROMACSgmx trjconv -f end.gro -s end.tpr -pbc mol -o end.gro";
     system "cp end.gro ../;cp start.top ../end.top";

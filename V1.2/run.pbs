@@ -1,9 +1,9 @@
 #!/bin/bash
 #PBS -q NICEshort
-#PBS -N T_TCF
+#PBS -N TMS_test
 #PBS -j oe
 #PBS -l nodes=1:ppn=32
 
 cd $PBS_O_WORKDIR
 source ~/.bashrc
-perl bash_multi.sh
+perl bash_MoS2.sh /home/lz/lz/Simulation/MoS2/build/1T-MoS2/TEST/ 1T_MoS2_ Channel.gro Channel.top 0.01 1247 -1_1_1

@@ -8,8 +8,8 @@ nstcomm             =  1
 nstxout             =  5000
 nstvout             =  0
 nstfout             =  0
-nstlog              =  5000
-nstenergy           =  2000
+nstlog              =  50000
+nstenergy           =  5000
 nstlist             =  5
 ns_type             =  grid
 
@@ -34,7 +34,7 @@ ewald_geometry      =  3dc ; when use vacuum, add this to fix the boxsize
 Tcoupl              =  Berendsen;nose-hoover; Berendsen
 tc-grps             =   LIQUID SOLID
 tau_t               =   0.2 0.2
-ref_t               =   350 0
+ref_t               =   298 0
 nhchainlength	    =   1
 DispCorr	    =   EnerPres
 
