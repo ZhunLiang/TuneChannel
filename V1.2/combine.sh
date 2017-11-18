@@ -38,8 +38,8 @@ system "mv end.top end_one.top";
 system "mv end_combine.gro end.gro";
 system "mv end_combine.top end.top";
 GeneraNdx("end.gro");
-RunGmx("em",0);
+RunGmx("em",0,4);
 GeneraNdx("end.gro");
-RunGmx("initial",0);
+RunGmx("initial",0,4);
 
 1;
