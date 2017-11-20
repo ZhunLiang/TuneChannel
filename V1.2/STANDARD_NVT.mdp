@@ -1,6 +1,6 @@
 title               =  Define here
 cpp                 =  /lib/cpp
-constraints         =  all-bonds
+constraints         =  h-bonds      ;all-bonds
 integrator          =  md
 dt                  =  DDDTTT       ; ps !
 nsteps              =  NSTEPS;
@@ -27,7 +27,7 @@ rcoulomb            =  1.2
 fourierspacing      =  0.1
 pme_order           =  4
 ewald_rtol          =  1e-5
-ewald_geometry      =  3dc ; when use vacuum, add this to fix the boxsize
+ewald_geometry      =  3d ; when use vacuum, add this to fix the boxsize
 ;pbc		    =  xy ; use in >5.0 version
 
 ; Berendsen temperature coupling is on in two groups

@@ -15,4 +15,4 @@ rvdw		    = 1.2		; Short-range Van der Waals cut-off
 ;pbc		        = xyz 		; Periodic Boundary Conditions (yes/no)
 freezegrps               = SOLID
 freezedim                = Y Y Y ;
-ewald_geometry      =  3dc
+ewald_geometry      =  3d
