@@ -53,14 +53,20 @@ RunGmx("tune",1,4);
 $RUNTIME += 1;
 }
 
+$delete=0;
 while($RUNTIME>1 && $RUNTIME<$MAXRUN){
     $TotalDeleta = CalDelNum("end.top");
-    if($TotalDeleta>=0){
-        system "rm dens.xvg";
+    if($TotalDeleta>0){
+        system "rm -f dens.xvg";
+        $delete = $delete + 1;
         GeneraGro();
         GeneraTop("end.top");
         GeneraNdx("end.gro");
         RunGmx("tune",1,4);
+        $temp_gro="delete$delete.gro";
+        $temp_top="delete$delete.top";
+        system "cp end.gro $temp_gro";
+        system "cp end.top $temp_top";
     }
     if($TotalDeleta<0){
         print "#--------------ERROR!!!-------------#";
