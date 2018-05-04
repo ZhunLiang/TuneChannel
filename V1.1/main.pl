@@ -53,6 +53,7 @@ RunGmx("tune",1);
 $RUNTIME += 1;
 }
 
+$delete=0;
 while($RUNTIME>1 && $RUNTIME<$MAXRUN){
     $TotalDeleta = CalDelNum("end.top");
     if($TotalDeleta!=0){
@@ -61,6 +62,18 @@ while($RUNTIME>1 && $RUNTIME<$MAXRUN){
         GeneraTop("end.top");
         GeneraNdx("end.gro");
         RunGmx("tune",1);
+        $delete=$delete + 1;
+        $temp_gro="delete$delete.gro";
+        $temp_top="delete$delete.top";
+        system "cp end.gro $temp_gro";
+        system "cp end.top $temp_top";
+    }
+    if($TotalDeleta<0){
+        print "#--------------ERROR!!!-------------#";
+        print "#-- The bulk density is too small --#";
+        print "#- Check code or build model again -#";
+        print "#----------------END----------------#";
+        exit();
     }
     $RUNTIME=$RUNTIME+1;
 }

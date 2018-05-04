@@ -65,6 +65,8 @@ if(v1>Kmax):
     v2=np.sum(Mole_Num*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     v3=np.sum(Delete_Ratio*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     Delete_Num = np.floor((1-Kmean/v1)*v2/v3*Delete_Ratio)
+if(v1<=Kmin):
+    Delete_Num -= 1
 
 Delete_str = [str(int(Delete_Num[i])) for i in range(Mole_Type_Num)]
 OutPut = "\t".join(Delete_str)

@@ -69,7 +69,7 @@ system "sed -i 's/LIQUID/$LiquidName/g' initial.mdp";
 
 system "cp STANDARD_NVT.mdp tune.mdp";
 system "sed -i 's/DDDTTT/0.002/g' tune.mdp";
-system "sed -i 's/NSTEPS/1000000/g' tune.mdp";
+system "sed -i 's/NSTEPS/100000/g' tune.mdp";
 system "sed -i 's/SOLID/$SolidName/g' tune.mdp";
 system "sed -i 's/LIQUID/$LiquidName/g' tune.mdp";
 
