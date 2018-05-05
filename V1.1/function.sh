@@ -44,7 +44,7 @@ sub RunGmx{
     system "mv index.ndx $_[0]/";
     chdir "$_[0]/";
     system "GROMACSgmx grompp -f start.mdp -c start.gro -p start.top -n index.ndx -maxwarn 1 -o end.tpr";
-    system "GROMACSgmx mdrun -s end.tpr -v -deffnm end -ntmpi 16";
+    system "GROMACSgmx mdrun -s end.tpr -v -deffnm end -ntmpi 1 -ntomp 32";
     if($_[1] == 1){
 	system "echo 0 | GROMACSgmx density -f end.trr -s end.tpr -sl $BinNum -o dens.xvg";
 	system "mv dens.xvg ../";
