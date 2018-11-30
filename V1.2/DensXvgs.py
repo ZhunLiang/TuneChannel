@@ -36,6 +36,9 @@ total_long = 30
 Kmax = 0.995
 Kmin = 0.97
 '''
+#max delete number one time
+MAX_DELETE = 200
+
 
 dens_file = open(dens,'r')
 dens_line = dens_file.readlines()
@@ -60,7 +63,7 @@ Delete_Ratio = np.array([float(delete_num.split()[i]) for i in range(len(delete_
 TMoleMass = np.array([float(mole_mass.split()[i]) for i in range(len(mole_mass.split()))])
 Delete_Type = Delete_Ratio>0
 Delete_Ratio = Delete_Type*Delete_Ratio
-Kmean = (Kmax+Kmin)/2
+Kmean = (Kmax+2*Kmin)/3
 v1 = Mean_channel_bulk/bulk_dens
 Mole_Type_Num = len(Mole_Num)
 Delete_Num = np.zeros(Mole_Type_Num)
@@ -69,6 +72,7 @@ if(v1>Kmax):
     v2=np.sum(Mole_Num*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     v3=np.sum(Delete_Ratio*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     Delete_Num = np.floor((1-Kmean/v1)*v2/v3*Delete_Ratio)
+    Delete_Num = np.floor(Delete_Num>MAX_DELETE)*MAX_DELETE + np.floor(Delete_Num<=MAX_DELETE)*Delete_Num
 #in too small density, then return -1
 if(v1<=Kmin):
     Delete_Num -= 1
