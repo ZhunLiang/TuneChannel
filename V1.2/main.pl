@@ -28,7 +28,7 @@ sub GetMSD{
 $RUNEM=1;
 $RUNINITIAL=1;
 $RUNTIME=1;
-$MAXRUN=5;
+$MAXRUN=6;
 $COMBINE=1;
 ##############GetPara############################
 require('pretreat.sh');
@@ -53,26 +53,26 @@ RunGmx("tune",1,4);
 $RUNTIME += 1;
 }
 
-$delete=0;
 while($RUNTIME>1 && $RUNTIME<$MAXRUN){
     $TotalDeleta = CalDelNum("end.top");
+    print("$TotalDeleta\n");
     if($TotalDeleta>0){
-        system "rm -f dens.xvg";
-        $delete = $delete + 1;
+        system "rm dens.xvg";
         GeneraGro();
         GeneraTop("end.top");
         GeneraNdx("end.gro");
         RunGmx("tune",1,4);
+        $delete=$delete + 1;
         $temp_gro="delete$delete.gro";
         $temp_top="delete$delete.top";
         system "cp end.gro $temp_gro";
         system "cp end.top $temp_top";
     }
     if($TotalDeleta<0){
-        print "#--------------ERROR!!!-------------#";
-        print "#-- The bulk density is too small --#";
-        print "#- Check code or build model again -#";
-        print "#----------------END----------------#";
+        print "#--------------ERROR!!!-------------#\n";
+        print "#-- The bulk density is too small --#\n";
+        print "#- Check code or build model again -#\n";
+        print "#----------------END----------------#\n";
         exit();
     }
     $RUNTIME=$RUNTIME+1;
