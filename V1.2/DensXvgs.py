@@ -37,7 +37,7 @@ Kmax = 0.995
 Kmin = 0.97
 '''
 #max delete number one time
-MAX_DELETE = 200
+MAX_DELETE = 100
 
 
 dens_file = open(dens,'r')
@@ -46,11 +46,11 @@ dens_end = len(dens_line)
 dens_begin = dens_end-bin_number
 deta_bin = bin_number/total_long
 bulk_begin1 = int(dens_begin)
-#-----bulk range, total 3 nm 
-bulk_end1 = int(dens_begin + deta_bin*1.5)
+#-----bulk range, total 2 nm 
+bulk_end1 = int(dens_begin + deta_bin*1)
 bulk_end2 = int(dens_end)
-bulk_begin2 = int(dens_end - deta_bin*1.5)
-#-----bulk range, total 3 nm
+bulk_begin2 = int(dens_end - deta_bin*1)
+#-----bulk range, total 2 nm
 channel_bulk1 = np.array([float(dens_line[i].split()[-1]) for i in range(bulk_begin1,bulk_end1)])
 channel_bulk2 = np.array([float(dens_line[i].split()[-1]) for i in range(bulk_begin2,bulk_end2)])
 Mean_channel_bulk1 = np.mean(channel_bulk1)
@@ -73,6 +73,7 @@ if(v1>Kmax):
     v3=np.sum(Delete_Ratio*TMoleMass[0:Mole_Type_Num]*Delete_Type)
     Delete_Num = np.floor((1-Kmean/v1)*v2/v3*Delete_Ratio)
     Delete_Num = np.floor(Delete_Num>MAX_DELETE)*MAX_DELETE + np.floor(Delete_Num<=MAX_DELETE)*Delete_Num
+    Delete_Num = Delete_Num//2*2
 #in too small density, then return -1
 if(v1<=Kmin):
     Delete_Num -= 1
