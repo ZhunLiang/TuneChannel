@@ -73,9 +73,11 @@ sub StrPara{
 sub CalDelNum{   #delete area need to change, thus need to Change DensXvgs.py
    my @Top_Out;
    my ($StrMass,$StrTop,$StrRatio);
-   @Top_Out = GetTopNum("end.top");
+   @Top_Out = GetTopNum($_[0]);
    $StrMass=StrPara(@Mass_Out);$StrTop=StrPara(@Top_Out);$StrRatio=StrPara(@Ratio);
-   `PYTHON DensXvgs.py -i dens.xvg -n $StrTop -d $StrRatio -b $BulkDens -m $StrMass -B $BinNum -T $TotalLong --Kmax $Kmax --Kmin $Kmin >> PyOut`;
+   my $Max_delete;
+   $Max_delete = int($Initial_Max_Delete/$_[1]);
+   `PYTHON DensXvgs.py -i dens.xvg -n $StrTop -d $StrRatio -b $BulkDens -m $StrMass -M $Max_delete -B $BinNum -T $TotalLong --Kmax $Kmax --Kmin $Kmin>> PyOut`;
    @Delete=split/\s+/,`tail -1 PyOut`;
    $TotalDeleta=0;
    for($i=0;$i<$TopTypeNum;$i=$i+1){

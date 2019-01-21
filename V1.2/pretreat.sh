@@ -16,8 +16,9 @@ our $BulkDens=$ARGV[3];
 our @Ratio=GetInputPara($ARGV[4]);
 
 
-our $Kmax=1.01;
-our $Kmin=0.98;
+our $Kmax=1.00;
+our $Kmin=0.99;
+our $Initial_Max_Delete = 80;
 
 our @GroXYZ=split/\s+/,`tail -1 $GroFile`;
 our $BinNum=@GroXYZ[3]/$DetaBin;
@@ -69,7 +70,7 @@ system "sed -i 's/LIQUID/$LiquidName/g' initial.mdp";
 
 system "cp STANDARD_NVT.mdp tune.mdp";
 system "sed -i 's/DDDTTT/0.002/g' tune.mdp";
-system "sed -i 's/NSTEPS/500000/g' tune.mdp";
+system "sed -i 's/NSTEPS/2500000/g' tune.mdp";
 system "sed -i 's/SOLID/$SolidName/g' tune.mdp";
 system "sed -i 's/LIQUID/$LiquidName/g' tune.mdp";
 

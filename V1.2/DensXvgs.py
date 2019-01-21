@@ -11,8 +11,9 @@ parser.add_option("-d", dest = "delete_ratio", default = "0 1 1", help = "shan c
 parser.add_option("-b", dest = "bulk_dens", default = 1540.0,type=float, help = "ion pairs bulk density")
 parser.add_option("-B", dest = "bin_number", default = 1500,type=int, help = "bin number of gmx density -sl number")
 parser.add_option("-T", dest = "total_long", default = 30,type=float, help = "total long")
-parser.add_option("--Kmax", dest = "Kmax", default = 0.99,type=float, help = "total long")
-parser.add_option("--Kmin", dest = "Kmin", default = 0.99,type=float, help = "total long")
+parser.add_option("--Kmax", dest = "Kmax", default = 0.99,type=float, help = "max bulk density/pure ion bulk density")
+parser.add_option("--Kmin", dest = "Kmin", default = 0.99,type=float, help = "min bulk density/pure ion bulk density")
+parser.add_option("-M", dest = "max_delete", default = 50,type=int, help = "max deleta number")
 
 
 (options, args) = parser.parse_args()
@@ -25,6 +26,8 @@ bin_number = options.bin_number
 total_long = options.total_long
 Kmax = options.Kmax
 Kmin = options.Kmin
+MAX_DELETE = options.max_delete
+
 '''
 dens = "dens.xvg"
 mole_num = "288 468 468"
@@ -37,7 +40,7 @@ Kmax = 0.995
 Kmin = 0.97
 '''
 #max delete number one time
-MAX_DELETE = 100
+#MAX_DELETE = 80
 
 
 dens_file = open(dens,'r')
